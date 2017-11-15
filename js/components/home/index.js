@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import BlankPage2 from "../blankPage2";
+import AccountSettings from "../AccountSettings";
+import Messages from "../Messages";
+import MessageBoards from "../MessageBoards";
+import FindStudents from "../FindStudents";
 import DrawBar from "../DrawBar";
 import { DrawerNavigator, NavigationActions } from "react-navigation";
 import {
@@ -74,7 +77,9 @@ class Home extends Component {
             </Button>
           </Right>
         </Header>
-        <Content>
+        <Content padder>
+          <Text style={styles.text}>Home screen</Text>
+          {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
             {this.props.list.map((item, i) => (
               <Row key={i}>
@@ -89,7 +94,7 @@ class Home extends Component {
                 </TouchableOpacity>
               </Row>
             ))}
-          </Grid>
+          </Grid>*/}
         </Content>
       </Container>
     );
@@ -111,7 +116,10 @@ const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
 const DrawNav = DrawerNavigator(
   {
     Home: { screen: HomeSwagger },
-    BlankPage2: { screen: BlankPage2 }
+    'Account Settings': { screen: AccountSettings },
+    Messages: { screen: Messages },
+    'Message Boards': { screen: MessageBoards },
+    'Find Students': { screen: FindStudents }
   },
   {
     contentComponent: props => <DrawBar {...props} />

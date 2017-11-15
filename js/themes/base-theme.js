@@ -199,7 +199,7 @@ export default {
 
 
   // Text
-  textColor: '#000',
+  textColor: '58D68D',
   inverseTextColor: '#fff',
 
 

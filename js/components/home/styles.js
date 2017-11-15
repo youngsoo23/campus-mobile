@@ -14,6 +14,7 @@ export default {
     fontSize: 20,
     marginBottom: 15,
     alignItems: 'center',
+    justifyContent: 'center'
   },
   mt: {
     marginTop: 18,

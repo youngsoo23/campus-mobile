@@ -39,7 +39,7 @@ class BlankPage extends Component {
           </Left>
 
           <Body>
-            <Title>{name ? this.props.name : "Blank Page"}</Title>
+            <Title>{name ? this.props.navigation.state.params.name.item : "Blank Page"}</Title>
           </Body>
 
           <Right />
