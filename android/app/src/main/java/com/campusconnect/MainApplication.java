@@ -1,4 +1,4 @@
-package com.nativestarterkit;
+package com.campusconnect;
 
 import android.app.Application;
 
