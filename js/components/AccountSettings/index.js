@@ -13,6 +13,8 @@ import {
   Body
 } from "native-base";
 
+import styles from "./styles";
+
 class AccountSettings extends Component {
   static navigationOptions = {
     header: null
@@ -20,7 +22,7 @@ class AccountSettings extends Component {
   render() {
     const { props: { name, index, list } } = this;
     return (
-      <Container>
+      <Container style={styles.container}>
         <Header>
           <Left>
             <Button transparent onPress={() => this.props.navigation.goBack()}>
