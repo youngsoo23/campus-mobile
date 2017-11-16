@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Login from "../components/login/";
+import Signup from "../components/Signup/";
 import Home from "../components/home/";
 import BlankPage from "../components/blankPage";
 import HomeDrawerRouter from "./HomeDrawerRouter";
@@ -10,6 +11,7 @@ HomeDrawerRouter.navigationOptions = ({ navigation }) => ({
 });
 export default (StackNav = StackNavigator({
   Login: { screen: Login },
+  Signup: { screen: Signup },
   Home: { screen: Home },
   BlankPage: { screen: BlankPage }
 }));

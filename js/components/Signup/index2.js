@@ -78,7 +78,7 @@ class Home extends Component {
           </Right>
         </Header>
         <Content padder>
-          <Text style={styles.text}>Home screen</Text>
+          <Text style={styles.text}>Sign-up screen</Text>
           {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
             {this.props.list.map((item, i) => (

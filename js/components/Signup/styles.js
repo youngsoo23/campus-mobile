@@ -5,7 +5,6 @@ const { StyleSheet, Dimensions } = React;
 
 // use code below if screen height is needed
 const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
 
 export default {
   container: {

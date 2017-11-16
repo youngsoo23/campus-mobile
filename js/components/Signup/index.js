@@ -98,17 +98,18 @@ class Login extends Component {
               <View style={styles.bg}>
                 <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
+                <Field name="password" component={this.renderInput} />
                 <Button
                   style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Home")}
                 >
-                  <Text>Login</Text>
+                  <Text>Sign up</Text>
                 </Button>
                  <Button
                   style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Signup")}
+                  onPress={() => this.props.navigation.navigate("Login")}
                 >
-                  <Text>Don't have an account? Sign up</Text>
+                  <Text>I already have an account</Text>
                 </Button>
               </View>
             {/*</Image>*/}
