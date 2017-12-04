@@ -104,12 +104,11 @@ class Login extends Component {
                 >
                   <Text>Login</Text>
                 </Button>
-                 <Button
-                  style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Signup")}
-                >
-                  <Text>Don't have an account? Sign up</Text>
-                </Button>
+                <Text>{"\n"}</Text>
+                <Text style={{color: 'blue', alignSelf: 'center'}}
+                  onPress={() => this.props.navigation.navigate("Signup")}>
+                  Don't have an account? Sign up
+                </Text>
               </View>
             {/*</Image>*/}
           </Content>

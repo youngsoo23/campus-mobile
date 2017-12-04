@@ -21,24 +21,27 @@ const validate = values => {
   const error = {};
   error.email = "";
   error.password = "";
-  var ema = values.email;
-  var pw = values.password;
+  var email_in = values.email;
+  var pw_in = values.password;
   if (values.email === undefined) {
-    ema = "";
+    email_in = "";
   }
   if (values.password === undefined) {
-    pw = "";
+    pw_in = "";
   }
-  if (ema.length < 8 && ema !== "") {
+  /*if (email_in.length < 8 && email_in !== "") {
     error.email = "too short";
+  }*/
+  if (!email_in.endsWith("@csub.edu")) {
+    error.email = "Please use your CSUB student e-mail!";
   }
-  if (!ema.includes("@") && ema !== "") {
+  /*if (!email_in.includes("@") && email_in !== "") {
     error.email = "@ not included";
-  }
-  if (pw.length > 15) {
+  }*/
+  if (pw_in.length > 15) {
     error.password = "max 15 characters";
   }
-  if (pw.length < 5 && pw.length > 0) {
+  if (pw_in.length < 5 && pw_in.length > 0) {
     error.password = "Weak";
   }
   return error;
@@ -73,14 +76,14 @@ class Login extends Component {
     return (
       <Item error={hasError}>
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
-        <Input
+        <Input secureTextEntry={input.name === "email" ? false : true} 
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
           {...input}
         />
         {hasError
           ? <Item style={{ borderColor: "transparent" }}>
               <Icon active style={{ color: "red", marginTop: 5 }} name="bug" />
-              <Text style={{ fontSize: 15, color: "red" }}>{error}</Text>
+              {/*<Text style={{ fontSize: 15, color: "red" }}>{error}</Text>*/}
             </Item>
           : <Text />}
       </Item>
@@ -98,19 +101,17 @@ class Login extends Component {
               <View style={styles.bg}>
                 <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
-                <Field name="password" component={this.renderInput} />
+                <Field name="password2" component={this.renderInput} />
                 <Button
                   style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Home")}
-                >
+                  onPress={() => this.props.navigation.navigate("Home")}>
                   <Text>Sign up</Text>
                 </Button>
-                 <Button
-                  style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Login")}
-                >
-                  <Text>I already have an account</Text>
-                </Button>
+                <Text>{"\n"}</Text>
+                <Text style={{color: 'blue', alignSelf: 'center'}}
+                  onPress={() => this.props.navigation.navigate("Login")}>
+                  Already have an account? Login
+                </Text>
               </View>
             {/*</Image>*/}
           </Content>
