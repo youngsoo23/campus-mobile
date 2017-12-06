@@ -24,6 +24,10 @@ import { Grid, Row } from "react-native-easy-grid";
 import { setIndex } from "../../actions/list";
 import { openDrawer } from "../../actions/drawer";
 import styles from "./styles";
+import api from "../../api.js";
+import {idnum} from "../login/index";
+import {username} from "../login/index";
+//var idnum = 2;
 
 class Home extends Component {
   static navigationOptions = {
@@ -35,12 +39,30 @@ class Home extends Component {
     list: React.PropTypes.arrayOf(React.PropTypes.string),
     openDrawer: React.PropTypes.func
   };
+  constructor(props){
+    super(props);
+    this.state = {
+      users: [],
+      userFirst: '',
+      userLast: ''
+    }
+  }
+  componentWillMount(){
+    api.getUsers().then((res) => {
+      this.setState({
+        users: res.users,
+        userFirst: res.users[idnum].FirstName,
+        userLast: res.users[idnum].LastName,
+        userDept: res.users[idnum].Department,
+        userYear: res.users[idnum].AcademicYear,
 
+      })
+    });
+  }
   newPage(index) {
     this.props.setIndex(index);
     Actions.blankPage();
   }
-
   render() {
     console.log(DrawNav, "786785786");
     return (
@@ -78,7 +100,11 @@ class Home extends Component {
           </Right>
         </Header>
         <Content padder>
-          <Text style={styles.text}>Home screen</Text>
+          <Text style={styles.text}>Hello, {" "}
+            {this.state.userFirst} {this.state.userLast} {"\n"}
+            Department: {this.state.userDept} {"\n"} 
+            Academic Year: {this.state.userYear} {"\n"}
+          </Text>
           {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
             {this.props.list.map((item, i) => (

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Image } from "react-native";
+import { Image, TextInput } from "react-native";
 import { connect } from "react-redux";
 import {
   Container,
@@ -16,6 +16,7 @@ import { setUser } from "../../actions/user";
 import styles from "./styles";
 
 {/*const background = require("../../../images/shadow.png");*/}
+var idnum = 0;
 
 const validate = values => {
   const error = {};
@@ -51,13 +52,21 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      name: "",
+      username: "",
+      password: ""
     };
     this.renderInput = this.renderInput.bind(this);
   }
-
+  _handlePress() {
+    console.log(this.state.username);
+    console.log(this.state.password);
+  }
   setUser(name) {
     this.props.setUser(name);
+  }
+  loginFunc() {
+
   }
   renderInput({
     input,
@@ -98,10 +107,18 @@ class Login extends Component {
               <View style={styles.bg}>
                 <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
+                {/*<TextInput
+                  style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+                  placeholder="Enter Name"
+                  returnKeyLabel = {"next"}
+                  onChangeText={(text) => this.setState({username:text})}
+                />*/}
                 <Button
                   style={styles.btn}
-                  onPress={() => this.props.navigation.navigate("Home")}
-                >
+                  onPress={() => {
+                    this.props.navigation.navigate("Home")
+                    this._handlePress()}
+                    }>
                   <Text>Login</Text>
                 </Button>
                 <Text>{"\n"}</Text>
@@ -132,3 +149,5 @@ LoginSwag.navigationOptions = {
   header: null
 };
 export default LoginSwag;
+export {idnum};
+//export {username};
