@@ -45,14 +45,15 @@ class AccountSettings extends Component {
         </Header>
 
         <Content padder>
-          <Text>
-            This page will contain account settings and
-            allow the user to edit their personal profile
-          </Text>
+          <Text style={styles.text}>Name:</Text>
+          <Text style={styles.text}>Major:</Text>
+          <Text style={styles.text}>E-mail:</Text> 
+          <Text style={styles.text}>phone:</Text>
+          <Text style={styles.text}>Gender:</Text>  
         </Content>
+
       </Container>
     );
   }
 }
-
 export default AccountSettings;
