@@ -16,7 +16,8 @@ import {
 import api from "../../api.js";
 import {idnum} from "../login/index";
 import {username} from "../login/index";
-
+import {ema} from "../login/index";
+import {ind} from "../home/index";
 import styles from "./styles";
 
 class Settings extends Component {
@@ -33,14 +34,16 @@ class Settings extends Component {
   }
   componentWillMount(){
     api.getUsers().then((res) => {
+    if (ind !== -1) {
       this.setState({
         users: res.users,
-        userFirst: res.users[idnum].FirstName,
-        userLast: res.users[idnum].LastName,
-        userDept: res.users[idnum].Department,
-        userYear: res.users[idnum].AcademicYear,
-
+        userEmail: res.users[ind].Email,
+        userFirst: res.users[ind].FirstName,
+        userLast: res.users[ind].LastName,
+        userDept: res.users[ind].Department,
+        userYear: res.users[ind].AcademicYear,
       })
+    }
     });
   }
   render() {
@@ -55,7 +58,7 @@ class Settings extends Component {
           </Left>
 
           <Body>
-            <Title>Settings</Title>
+            <Title>Account Settings</Title>
           </Body>
 
           <Right>
@@ -70,16 +73,16 @@ class Settings extends Component {
 
         <Content padder>
         <View>
-          <Text style={styles.text}>Name: hello world {this.state.userFirst} {this.state.userLast}</Text>
-          <Text style={styles.text}>Major: {this.state.userDept}</Text>
-          <Text style={styles.text}>E-mail:</Text> 
-          <Text style={styles.text}>phone:</Text>
+          <Text style={styles.text}>
+            Name: {this.state.userFirst} {this.state.userLast} {"\n"}
+            Major: {this.state.userDept} {"\n"}
+            Year: {this.state.userYear} {"\n"}
+            Email: {ema} {"\n"}
+            Phone: {"\n"}</Text>
            <Button style ={styles.btn} 
             onPress={() => this.props.navigation.navigate("AccountSettings")}>
-          <Text> save</Text>
+          <Text>Save</Text>
           </Button>
-          <Text style={styles.text}>Year: {this.state.userYear}</Text>  
-          <Text style={styles.text}>Gender: </Text>
           </View>
         </Content>
 

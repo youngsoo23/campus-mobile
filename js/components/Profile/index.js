@@ -17,6 +17,7 @@ import api from "../../api.js";
 import {idnum} from "../login/index";
 import {ema} from "../login/index";
 import {username} from "../login/index";
+import Settings from "../Settings";
 
 import styles from "./styles";
 
@@ -75,14 +76,13 @@ class Profile extends Component {
 
         <Content padder>
         <View>
-          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}</Text>
-          <Text style={styles.text}>Major: {this.state.userDept}</Text>
-          <Text style={styles.text}>E-mail:</Text> 
-          <Text style={styles.text}>phone:</Text>
-          <Text style={styles.text}>Year: {this.state.userYear}</Text>  
-          <Text style={styles.text}>Gender: </Text>
+          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast} {"\n"}
+            Major: {this.state.userDept} {"\n"}
+            Year: {this.state.userYear} {"\n"}
+            Email: {ema} {"\n"}
+            Phone: {"\n"}</Text>
           <Button style={styles.position}
-                  onPress={() => this.props.navigation.navigate("AccountSettings")}>
+                  onPress={() => this.props.navigation.navigate("Settings")}>
                   <Icon name="ios-settings" /> 
                   </Button>
           </View>
