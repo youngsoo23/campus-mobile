@@ -16,13 +16,17 @@ import { setUser } from "../../actions/user";
 import styles from "./styles";
 
 {/*const background = require("../../../images/shadow.png");*/}
-var idnum = 0;
+var idnum;
+var ema;
+var hasError;
+var showBug;
 
 const validate = values => {
   const error = {};
   error.email = "";
   error.password = "";
-  var ema = values.email;
+  ema = values.email;
+  idnum = values.email;
   var pw = values.password;
   if (values.email === undefined) {
     ema = "";
@@ -30,22 +34,17 @@ const validate = values => {
   if (values.password === undefined) {
     pw = "";
   }
-  if (ema.length < 8 && ema !== "") {
-    error.email = "too short";
-  }
-  if (!ema.includes("@") && ema !== "") {
-    error.email = "@ not included";
-  }
-  if (pw.length > 15) {
-    error.password = "max 15 characters";
-  }
-  if (pw.length < 5 && pw.length > 0) {
-    error.password = "Weak";
+  if (!ema.endsWith("@csub.edu")) {
+    error.email = "non-csub email";
+    hasError = true;
+  } else {
+    hasError = false;
   }
   return error;
 };
 
 class Login extends Component {
+  showBug = false;
   static propTypes = {
     setUser: React.PropTypes.func
   };
@@ -58,15 +57,11 @@ class Login extends Component {
     };
     this.renderInput = this.renderInput.bind(this);
   }
-  _handlePress() {
-    console.log(this.state.username);
-    console.log(this.state.password);
-  }
+  login_check() {
+    hasError = false;
+ }
   setUser(name) {
     this.props.setUser(name);
-  }
-  loginFunc() {
-
   }
   renderInput({
     input,
@@ -75,21 +70,22 @@ class Login extends Component {
     meta: { touched, error, warning },
     inputProps
   }) {
-    var hasError = false;
-    if (error !== undefined) {
-      hasError = true;
+    hasError = true;
+    if (error === undefined) {
+      hasError = false;
     }
     return (
-      <Item error={hasError}>
+      <Item error={showBug}>
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
-        <Input
+        <Input autoCapitalize="none"
+          secureTextEntry={input.name === "email" ? false : true}
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
           {...input}
         />
-        {hasError
+        {showBug
           ? <Item style={{ borderColor: "transparent" }}>
               <Icon active style={{ color: "red", marginTop: 5 }} name="bug" />
-              <Text style={{ fontSize: 15, color: "red" }}>{error}</Text>
+              <Text style={{ fontSize: 15, color: "red" }}></Text>
             </Item>
           : <Text />}
       </Item>
@@ -105,26 +101,22 @@ class Login extends Component {
               <Text style={styles.largeText}>Campus Connect</Text>
             </View>
               <View style={styles.bg}>
-                <Field name="email" component={this.renderInput} />
+                <Field name="email"
+                  component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
-                {/*<TextInput
-                  style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-                  placeholder="Enter Name"
-                  returnKeyLabel = {"next"}
-                  onChangeText={(text) => this.setState({username:text})}
-                />*/}
-                <Button
-                  style={styles.btn}
-                  onPress={() => {
-                    this.props.navigation.navigate("Home")
-                    this._handlePress()}
-                    }>
+                {hasError ?
+                (<Button style={styles.btn}
+                  onPress={() => this.props.navigation.navigate("Login")}>
                   <Text>Login</Text>
-                </Button>
+                </Button>) :
+                (<Button style={styles.btn}
+                  onPress={() => this.props.navigation.navigate("Home")}>
+                  <Text>Login</Text>
+                </Button>)}
                 <Text>{"\n"}</Text>
                 <Text style={{color: 'blue', alignSelf: 'center'}}
                   onPress={() => this.props.navigation.navigate("Signup")}>
-                  Don't have an account? Sign up
+                  Don't have an account? Sign up {"\n"} {hasError ? "T" : "F"}
                 </Text>
               </View>
             {/*</Image>*/}
@@ -150,4 +142,4 @@ LoginSwag.navigationOptions = {
 };
 export default LoginSwag;
 export {idnum};
-//export {username};
+export {ema};

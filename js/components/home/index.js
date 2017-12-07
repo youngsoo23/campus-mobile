@@ -26,7 +26,7 @@ import { openDrawer } from "../../actions/drawer";
 import styles from "./styles";
 import api from "../../api.js";
 import {idnum} from "../login/index";
-import {username} from "../login/index";
+import {ema} from "../login/index";
 //var idnum = 2;
 
 class Home extends Component {
@@ -104,6 +104,7 @@ class Home extends Component {
             {this.state.userFirst} {this.state.userLast} {"\n"}
             Department: {this.state.userDept} {"\n"} 
             Academic Year: {this.state.userYear} {"\n"}
+            {ema}
           </Text>
           {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
