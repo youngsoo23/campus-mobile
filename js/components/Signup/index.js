@@ -84,7 +84,8 @@ class Login extends Component {
     return (
       <Item error={showBug}>
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
-        <Input secureTextEntry={input.name === "email" ? false : true} 
+        <Input autoCapitalize="none" 
+          secureTextEntry={input.name === "email" ? false : true} 
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
           {...input}
         />
@@ -113,11 +114,11 @@ class Login extends Component {
                 {hasError ? login_tried = true &&
                 (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Signup")}>
-                  <Text>Login</Text>
+                  <Text>Signup</Text>
                 </Button>) :
                 (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Home")}>
-                  <Text>Login</Text>
+                  <Text>Signup</Text>
                 </Button>)}
                 <Text>{"\n"}</Text>
                 <Text style={{color: 'blue', alignSelf: 'center'}}

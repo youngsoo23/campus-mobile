@@ -29,6 +29,11 @@ import {idnum} from "../login/index";
 import {ema} from "../login/index";
 
 var ind = -1;
+var newUser;
+
+var newGreeting = "Hello, new user!\n\n" + 
+ "Please go to your account settings to edit your profile";
+
 
 class Home extends Component {
   static navigationOptions = {
@@ -108,8 +113,15 @@ class Home extends Component {
         </Header>
         <Content padder>
           <Text style={styles.text}>
-          Hello, {ind === -1 ? "new user" : this.state.userFirst}{"!"}
-          </Text>
+          {ind === -1 ? newGreeting :
+            "Welcome back, " + this.state.userFirst + "!"}</Text>
+
+          {/*<Text style={styles.text}>
+          {ind === -1 ?
+            ("Hello, new user!\n" + 
+            "Please go to your account settings to edit your profile") :
+            this.state.userFirst{"!"})}
+          </Text>*/}
           {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
             {this.props.list.map((item, i) => (
