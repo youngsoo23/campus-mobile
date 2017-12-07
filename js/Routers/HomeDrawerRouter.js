@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Signup from "../components/Signup";
 import Home from "../components/home/";
-import AccountSettings from "../components/AccountSettings";
+import Profile from "../components/Profile";
+import Settings from "../components/Settings";
 import Messages from "../components/Messages";
 import MessageBoards from "../components/MessageBoards";
 import FindStudents from "../components/FindStudents";
@@ -11,7 +12,8 @@ export default (DrawNav = DrawerNavigator(
   {
     Signup: { screen: Signup },
     Home: { screen: Home },
-    AccountSettings: { screen: AccountSettings },
+    Profile: { screen: Profile },
+    Settings: { screen: Settings },
     Messages: { screen: Messages }, 
     MessageBoards: { screen: MessageBoards },
     FindStudents: { screen: FindStudents }

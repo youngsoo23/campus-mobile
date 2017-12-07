@@ -9,8 +9,8 @@ import {
   Content,
   Icon
 } from "native-base";
-const routes = ["Home", "Account Settings", "Messages",
-                "Message Boards", "Find Students"];
+const routes = ["Home", "Profile", "Messages",
+                "Message Boards", "Find Students", "Account Settings"];
 export default class DrawBar extends React.Component {
   static navigationOptions = {
     header: null

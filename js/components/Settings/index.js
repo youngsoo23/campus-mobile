@@ -19,7 +19,7 @@ import {username} from "../login/index";
 
 import styles from "./styles";
 
-class AccountSettings extends Component {
+class Settings extends Component {
   static navigationOptions = {
     header: null
   };
@@ -55,7 +55,7 @@ class AccountSettings extends Component {
           </Left>
 
           <Body>
-            <Title>Account Settings</Title>
+            <Title>Settings</Title>
           </Body>
 
           <Right>
@@ -87,4 +87,4 @@ class AccountSettings extends Component {
     );
   }
 }
-export default AccountSettings;
+export default Settings;

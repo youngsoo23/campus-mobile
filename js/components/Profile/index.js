@@ -20,7 +20,7 @@ import {username} from "../login/index";
 
 import styles from "./styles";
 
-class AccountSettings extends Component {
+class Profile extends Component {
  
     constructor(props){
     super(props);
@@ -60,7 +60,7 @@ class AccountSettings extends Component {
           </Left>
 
           <Body>
-            <Title>Account Settings</Title>
+            <Title>Profile</Title>
           </Body>
 
           <Right>
@@ -82,7 +82,7 @@ class AccountSettings extends Component {
           <Text style={styles.text}>Year: {this.state.userYear}</Text>  
           <Text style={styles.text}>Gender: </Text>
           <Button style={styles.position}
-                  onPress={() => this.props.navigation.navigate("Settings")}>
+                  onPress={() => this.props.navigation.navigate("AccountSettings")}>
                   <Icon name="ios-settings" /> 
                   </Button>
           </View>
@@ -91,4 +91,4 @@ class AccountSettings extends Component {
     );
   }
 }
-export default AccountSettings;
+export default Profile;

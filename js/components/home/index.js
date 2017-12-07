@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { TouchableOpacity } from "react-native";
 import { connect } from "react-redux";
-import AccountSettings from "../AccountSettings";
+import Profile from "../Profile";
+import Settings from "../Settings";
 import Messages from "../Messages";
 import MessageBoards from "../MessageBoards";
 import FindStudents from "../FindStudents";
@@ -159,10 +160,11 @@ const HomeSwagger = connect(mapStateToProps, bindAction)(Home);
 const DrawNav = DrawerNavigator(
   {
     'Home': { screen: HomeSwagger },
-    'Account Settings': { screen: AccountSettings },
+    'Profile': { screen: Profile },
     'Messages': { screen: Messages },
     'Message Boards': { screen: MessageBoards },
-    'Find Students': { screen: FindStudents }
+    'Find Students': { screen: FindStudents },
+    'Account Settings': { screen: Settings }
   },
   {
     contentComponent: props => <DrawBar {...props} />
