@@ -12,7 +12,7 @@ export default {
   },
   text: {
     fontSize: 20,
-    marginBottom: 10,
+    marginBottom: 15,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -56,5 +56,11 @@ export default {
     backgroundColor: '#e7e7e7',
     left: 300,
     top:80
+  },
+  stretch: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+    borderRadius:50
   }
 };

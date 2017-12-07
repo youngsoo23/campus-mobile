@@ -42,12 +42,21 @@ export default {
     marginBottom: 20,
   },
   btn: {
+    backgroundColor: 'green',
+    top: 80,
     alignSelf: 'center',
+    borderRadius: 50
   },
   largeText: {
     fontSize: 20,
     marginTop: 200,
     fontFamily: 'HelveticaNeue',
     //color: "#fdfefe",
+  },
+  stretch: {
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+    borderRadius:50
   }
 };

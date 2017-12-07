@@ -13,11 +13,11 @@ import {
   View,
   Body
 } from "native-base";
+import { Image, TextInput } from "react-native";
 import api from "../../api.js";
 import {idnum} from "../login/index";
 import {ema} from "../login/index";
 import {username} from "../login/index";
-import Settings from "../Settings";
 
 import styles from "./styles";
 
@@ -76,15 +76,14 @@ class Profile extends Component {
 
         <Content padder>
         <View>
-          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast} {"\n"}
-            Major: {this.state.userDept} {"\n"}
-            Year: {this.state.userYear} {"\n"}
-            Email: {ema} {"\n"}
-            Phone: {"\n"}</Text>
-          <Button style={styles.position}
-                  onPress={() => this.props.navigation.navigate("Settings")}>
-                  <Icon name="ios-settings" /> 
-                  </Button>
+         <Image style={styles.stretch}
+            source={require("../../../images/simpson.png")}
+             />
+          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}{"\n"}
+            Major: {this.state.userDept}{"\n"}
+            Year: {this.state.userYear}{"\n"}
+            E-mail:{ema} {"\n"}
+            phone: {"\n"} </Text>
           </View>
         </Content>
       </Container>

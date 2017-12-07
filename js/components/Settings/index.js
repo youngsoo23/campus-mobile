@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
+import { connect, Field } from "react-redux";
 import {
   Container,
   Header,
@@ -16,10 +16,9 @@ import {
 import api from "../../api.js";
 import {idnum} from "../login/index";
 import {username} from "../login/index";
-import {ema} from "../login/index";
-import {ind} from "../home/index";
+import { Image, TextInput } from "react-native";
 import styles from "./styles";
-
+import {ema} from "../login/index";
 class Settings extends Component {
   static navigationOptions = {
     header: null
@@ -32,18 +31,17 @@ class Settings extends Component {
       userLast: ''
     }
   }
+
   componentWillMount(){
     api.getUsers().then((res) => {
-    if (ind !== -1) {
       this.setState({
         users: res.users,
-        userEmail: res.users[ind].Email,
-        userFirst: res.users[ind].FirstName,
-        userLast: res.users[ind].LastName,
-        userDept: res.users[ind].Department,
-        userYear: res.users[ind].AcademicYear,
+        userFirst: res.users[idnum].FirstName,
+        userLast: res.users[idnum].LastName,
+        userDept: res.users[idnum].Department,
+        userYear: res.users[idnum].AcademicYear,
+
       })
-    }
     });
   }
   render() {
@@ -58,7 +56,7 @@ class Settings extends Component {
           </Left>
 
           <Body>
-            <Title>Account Settings</Title>
+            <Title>Settings</Title>
           </Body>
 
           <Right>
@@ -73,19 +71,36 @@ class Settings extends Component {
 
         <Content padder>
         <View>
-          <Text style={styles.text}>
-            Name: {this.state.userFirst} {this.state.userLast} {"\n"}
-            Major: {this.state.userDept} {"\n"}
-            Year: {this.state.userYear} {"\n"}
-            Email: {ema} {"\n"}
-            Phone: {"\n"}</Text>
-           <Button style ={styles.btn} 
-            onPress={() => this.props.navigation.navigate("AccountSettings")}>
+         <Image style={styles.stretch}
+            source={require("../../../images/simpson.png")}
+             />
+          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}</Text>
+          <Text style={styles.text}>Major: {this.state.userDept}</Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text2}
+          />
+          <Text style={styles.text}>Year: {this.state.userYear}</Text>
+          <Text style={styles.text}>email: {ema} </Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text1}
+          /> 
+          <Text style={styles.text}>phone: </Text>
+          <TextInput
+            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            onChangeText={(text) => this.setState({text})}
+            value={this.state.text1}
+          /> 
+          <Button style ={styles.btn} 
+            onPress={() => this.props.navigation.navigate("Profile")}>
+          <Icon name="ios-settings" /> 
           <Text>Save</Text>
           </Button>
           </View>
         </Content>
-
       </Container>
     );
   }
