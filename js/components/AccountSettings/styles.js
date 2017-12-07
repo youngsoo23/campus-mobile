@@ -4,15 +4,15 @@ const React = require('react-native');
 const { StyleSheet } = React;
 export default {
   container: {
-    backgroundColor: 'powderblue',
+    backgroundColor: '#e6f9ff',
   },
   row: {
     flex: 3,
     alignItems: 'center',
   },
   text: {
-    fontSize: 16,
-    marginBottom: 15,
+    fontSize: 20,
+    marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center'
   },
@@ -42,7 +42,7 @@ export default {
     marginBottom: 20,
   },
   btn: {
-    marginTop: 20,
+    backgroundColor: '#4CAF50',
     alignSelf: 'center',
   },
   largeText: {
@@ -50,5 +50,11 @@ export default {
     marginTop: 200,
     fontFamily: 'HelveticaNeue',
     //color: "#fdfefe",
+  },
+
+  position: {
+    backgroundColor: '#e7e7e7',
+    left: 300,
+    top:80
   }
 };
