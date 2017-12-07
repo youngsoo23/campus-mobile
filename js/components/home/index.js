@@ -27,9 +27,8 @@ import styles from "./styles";
 import api from "../../api.js";
 import {idnum} from "../login/index";
 import {ema} from "../login/index";
-//var idnum = 2;
-var ind = 0;
-//{ema === "christian@csub.edu" ? ind = 0 : ind = 1}
+
+var ind = -1;
 
 class Home extends Component {
   static navigationOptions = {
@@ -50,15 +49,21 @@ class Home extends Component {
     }
   }
   componentWillMount(){
+    // Get index of appropriate user
     api.getUsers().then((res) => {
-      this.setState({
-        users: res.users,
-        userEmail: res.users[ind].Email,
-        userFirst: res.users[ind].FirstName,
-        userLast: res.users[ind].LastName,
-        userDept: res.users[ind].Department,
-        userYear: res.users[ind].AcademicYear,
-      })
+      for (var i = 0; i < 5; i++) {
+        if (ema.trim() === res.users[i].Email) {
+          ind = i;
+          this.setState({
+          users: res.users,
+          userEmail: res.users[ind].Email,
+          userFirst: res.users[ind].FirstName,
+          userLast: res.users[ind].LastName,
+          userDept: res.users[ind].Department,
+          userYear: res.users[ind].AcademicYear,
+          })
+        }
+      } 
     });
   }
   newPage(index) {
@@ -102,11 +107,8 @@ class Home extends Component {
           </Right>
         </Header>
         <Content padder>
-          <Text style={styles.text}>Hello, {" "}
-            {this.state.userFirst} {this.state.userLast} {"\n"}
-            Department: {this.state.userDept} {"\n"} 
-            Academic Year: {this.state.userYear} {"\n"}
-            {ema}
+          <Text style={styles.text}>
+          Hello, {ind === -1 ? "new user" : this.state.userFirst}{"!"}
           </Text>
           {/*REFER TO CODE BELOW FOR LISTS (USE FOR MESSAGE BOARDS ?)
           <Grid style={styles.mt}>
@@ -162,3 +164,4 @@ DrawNav.navigationOptions = ({ navigation }) => {
   };
 };
 export default DrawNav;
+export {ind};

@@ -115,7 +115,7 @@ class Login extends Component {
                 <Text>{"\n"}</Text>
                 <Text style={{color: 'blue', alignSelf: 'center'}}
                   onPress={() => this.props.navigation.navigate("Signup")}>
-                  Don't have an account? Sign up {"\n"} {hasError ? "T" : "F"}
+                  Don't have an account? Sign up
                 </Text>
               </View>
             {/*</Image>*/}

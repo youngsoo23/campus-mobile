@@ -15,6 +15,8 @@ import {
 import api from "../../api.js";
 import {idnum} from "../login/index";
 import {username} from "../login/index";
+import {ema} from "../login/index";
+import {ind} from "../home/index";
 
 import styles from "./styles";
 
@@ -32,14 +34,15 @@ class AccountSettings extends Component {
   }
   componentWillMount(){
     api.getUsers().then((res) => {
-      this.setState({
-        users: res.users,
-        userFirst: res.users[idnum].FirstName,
-        userLast: res.users[idnum].LastName,
-        userDept: res.users[idnum].Department,
-        userYear: res.users[idnum].AcademicYear,
-
-      })
+      if (ind !== -1) {
+        this.setState({
+          users: res.users,
+          userFirst: res.users[ind].FirstName,
+          userLast: res.users[ind].LastName,
+          userDept: res.users[ind].Department,
+          userYear: res.users[ind].AcademicYear,
+        })
+      }
     });
   }
   render() {
@@ -68,11 +71,17 @@ class AccountSettings extends Component {
         </Header>
 
         <Content padder>
-          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}</Text>
-          <Text style={styles.text}>Major: {this.state.userDept}</Text>
-          <Text style={styles.text}>E-mail:</Text> 
-          <Text style={styles.text}>phone:</Text>
-          <Text style={styles.text}>Gender: {this.state.userYear}</Text>  
+          {ind === -1 ?
+            (<Text style ={styles.text}>
+              Name:{"\n"}
+              Dept:{"\n"}
+              Year:{"\n"}
+              Email: {ema}</Text>) :
+          (<Text style={styles.text}>
+            Name: {this.state.userFirst} {this.state.userLast} {"\n"}
+            Dept: {this.state.userDept} {"\n"}
+            Year: {this.state.userYear} {"\n"}
+            Email: {ema}</Text>)}
         </Content>
 
       </Container>
