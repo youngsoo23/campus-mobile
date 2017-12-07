@@ -46,5 +46,11 @@ export default {
     marginTop: 200,
     fontFamily: 'HelveticaNeue',
     //color: "#fdfefe",
-  }
+  },
+  errorText: {
+    fontSize: 15,
+    color: 'red',
+    alignSelf: 'center',
+    justifyContent: 'center'
+  } 
 };

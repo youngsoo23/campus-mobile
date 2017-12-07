@@ -20,6 +20,7 @@ var idnum;
 var ema;
 var hasError;
 var showBug;
+var signup_tried = false;
 
 const validate = values => {
   const error = {};
@@ -27,11 +28,21 @@ const validate = values => {
   error.password = "";
   ema = values.email;
   var pw = values.password;
+  var pw2 = values.password2;
   if (values.email === undefined) {
     ema = "";
   }
   if (values.password === undefined) {
     pw = "";
+  }
+  if (values.password2 === undefined) {
+    pw2 = "";
+  }
+  if (pw !== pw2) {
+    error.password = "non-matching pws";
+    hasError = true;
+  } else {
+    //hasError = false;
   }
   /*if (email_in.length < 8 && email_in !== "") {
     error.email = "too short";
@@ -40,7 +51,7 @@ const validate = values => {
     error.email = "non-csub email";
     hasError = true;
   } else {
-    hasError = false;
+    //hasError = false;
   }
   /*if (!email_in.includes("@") && email_in !== "") {
     error.email = "@ not included";
@@ -48,9 +59,9 @@ const validate = values => {
   /*if (pw_in.length > 15) {
     error.password = "max 15 characters";
   }*/
-  if (pw.length < 5 && pw.length > 0) {
+  /*if (pw.length < 5 && pw.length > 0) {
     error.password = "Weak";
-  }
+  }*/
   return error;
 };
 
@@ -84,7 +95,8 @@ class Login extends Component {
     return (
       <Item error={showBug}>
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
-        <Input secureTextEntry={input.name === "email" ? false : true} 
+        <Input autoCapitalize="none" 
+          secureTextEntry={input.name === "email" ? false : true} 
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
           {...input}
         />
@@ -110,14 +122,14 @@ class Login extends Component {
                 <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
                 <Field name="password2" component={this.renderInput} />
-                {hasError ? login_tried = true &&
+                {hasError ?
                 (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Signup")}>
-                  <Text>Login</Text>
+                  <Text>Signup</Text>
                 </Button>) :
                 (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Home")}>
-                  <Text>Login</Text>
+                  <Text>Signup</Text>
                 </Button>)}
                 <Text>{"\n"}</Text>
                 <Text style={{color: 'blue', alignSelf: 'center'}}

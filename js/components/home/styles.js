@@ -16,6 +16,11 @@ export default {
     alignItems: 'center',
     justifyContent: 'center'
   },
+  linktext: {
+  fontSize: 20,
+  marginBottom: 15,
+  color: 'blue'
+  },
   mt: {
     marginTop: 18,
   },
