@@ -20,6 +20,7 @@ var idnum;
 var ema;
 var hasError;
 var showBug;
+var login_tried;
 
 const validate = values => {
   const error = {};
@@ -45,6 +46,7 @@ const validate = values => {
 
 class Login extends Component {
   showBug = false;
+  login_tried = false;
   static propTypes = {
     setUser: React.PropTypes.func
   };
@@ -57,9 +59,6 @@ class Login extends Component {
     };
     this.renderInput = this.renderInput.bind(this);
   }
-  login_check() {
-    hasError = false;
- }
   setUser(name) {
     this.props.setUser(name);
   }
@@ -104,7 +103,7 @@ class Login extends Component {
                 <Field name="email"
                   component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
-                {hasError ?
+                {hasError ? login_tried = true &&
                 (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Login")}>
                   <Text>Login</Text>

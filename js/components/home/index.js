@@ -28,6 +28,8 @@ import api from "../../api.js";
 import {idnum} from "../login/index";
 import {ema} from "../login/index";
 //var idnum = 2;
+var ind = 0;
+//{ema === "christian@csub.edu" ? ind = 0 : ind = 1}
 
 class Home extends Component {
   static navigationOptions = {
@@ -51,11 +53,11 @@ class Home extends Component {
     api.getUsers().then((res) => {
       this.setState({
         users: res.users,
-        userFirst: res.users[idnum].FirstName,
-        userLast: res.users[idnum].LastName,
-        userDept: res.users[idnum].Department,
-        userYear: res.users[idnum].AcademicYear,
-
+        userEmail: res.users[ind].Email,
+        userFirst: res.users[ind].FirstName,
+        userLast: res.users[ind].LastName,
+        userDept: res.users[ind].Department,
+        userYear: res.users[ind].AcademicYear,
       })
     });
   }

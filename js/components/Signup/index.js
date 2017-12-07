@@ -16,38 +16,46 @@ import { setUser } from "../../actions/user";
 import styles from "./styles";
 
 {/*const background = require("../../../images/shadow.png");*/}
+var idnum;
+var ema;
+var hasError;
+var showBug;
 
 const validate = values => {
   const error = {};
   error.email = "";
   error.password = "";
-  var email_in = values.email;
-  var pw_in = values.password;
+  ema = values.email;
+  var pw = values.password;
   if (values.email === undefined) {
-    email_in = "";
+    ema = "";
   }
   if (values.password === undefined) {
-    pw_in = "";
+    pw = "";
   }
   /*if (email_in.length < 8 && email_in !== "") {
     error.email = "too short";
   }*/
-  if (!email_in.endsWith("@csub.edu")) {
-    error.email = "Please use your CSUB student e-mail!";
+  if (!ema.endsWith("@csub.edu")) {
+    error.email = "non-csub email";
+    hasError = true;
+  } else {
+    hasError = false;
   }
   /*if (!email_in.includes("@") && email_in !== "") {
     error.email = "@ not included";
   }*/
-  if (pw_in.length > 15) {
+  /*if (pw_in.length > 15) {
     error.password = "max 15 characters";
-  }
-  if (pw_in.length < 5 && pw_in.length > 0) {
+  }*/
+  if (pw.length < 5 && pw.length > 0) {
     error.password = "Weak";
   }
   return error;
 };
 
 class Login extends Component {
+  showBug = false;
   static propTypes = {
     setUser: React.PropTypes.func
   };
@@ -69,18 +77,18 @@ class Login extends Component {
     meta: { touched, error, warning },
     inputProps
   }) {
-    var hasError = false;
-    if (error !== undefined) {
-      hasError = true;
+    hasError = true;
+    if (error === undefined) {
+      hasError = false;
     }
     return (
-      <Item error={hasError}>
+      <Item error={showBug}>
         <Icon active name={input.name === "email" ? "person" : "unlock"} />
         <Input secureTextEntry={input.name === "email" ? false : true} 
           placeholder={input.name === "email" ? "EMAIL" : "PASSWORD"}
           {...input}
         />
-        {hasError
+        {showBug
           ? <Item style={{ borderColor: "transparent" }}>
               <Icon active style={{ color: "red", marginTop: 5 }} name="bug" />
               {/*<Text style={{ fontSize: 15, color: "red" }}>{error}</Text>*/}
@@ -102,11 +110,15 @@ class Login extends Component {
                 <Field name="email" component={this.renderInput} />
                 <Field name="password" component={this.renderInput} />
                 <Field name="password2" component={this.renderInput} />
-                <Button
-                  style={styles.btn}
+                {hasError ? login_tried = true &&
+                (<Button style={styles.btn}
+                  onPress={() => this.props.navigation.navigate("Signup")}>
+                  <Text>Login</Text>
+                </Button>) :
+                (<Button style={styles.btn}
                   onPress={() => this.props.navigation.navigate("Home")}>
-                  <Text>Sign up</Text>
-                </Button>
+                  <Text>Login</Text>
+                </Button>)}
                 <Text>{"\n"}</Text>
                 <Text style={{color: 'blue', alignSelf: 'center'}}
                   onPress={() => this.props.navigation.navigate("Login")}>
