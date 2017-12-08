@@ -27,7 +27,7 @@ export default {
   },
   bg: {
     flex: 1,
-    marginTop: 100,
+    marginTop: 50,
     paddingTop: 20,
     paddingLeft: 10,
     paddingRight: 10,
@@ -43,7 +43,7 @@ export default {
   },
   largeText: {
     fontSize: 20,
-    marginTop: 200,
+    marginTop: 100,
     fontFamily: 'HelveticaNeue',
     //color: "#fdfefe",
   },
@@ -52,5 +52,12 @@ export default {
     color: 'red',
     alignSelf: 'center',
     justifyContent: 'center'
-  } 
+  },
+  stretch: {
+    marginTop: 20,
+    width: 150,
+    height: 150,
+    alignSelf: 'center',
+    borderRadius:50
+  }
 };

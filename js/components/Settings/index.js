@@ -19,6 +19,8 @@ import {username} from "../login/index";
 import { Image, TextInput } from "react-native";
 import styles from "./styles";
 import {ema} from "../login/index";
+
+
 class Settings extends Component {
   static navigationOptions = {
     header: null
@@ -31,17 +33,22 @@ class Settings extends Component {
       userLast: ''
     }
   }
-
-  componentWillMount(){
+   componentWillMount(){
+    // Get index of appropriate user
     api.getUsers().then((res) => {
-      this.setState({
-        users: res.users,
-        userFirst: res.users[idnum].FirstName,
-        userLast: res.users[idnum].LastName,
-        userDept: res.users[idnum].Department,
-        userYear: res.users[idnum].AcademicYear,
-
-      })
+      for (var i = 0; i < 5; i++) {
+        if (ema.trim() === res.users[i].Email) {
+          ind = i;
+          this.setState({
+          users: res.users,
+          userEmail: res.users[ind].Email,
+          userFirst: res.users[ind].FirstName,
+          userLast: res.users[ind].LastName,
+          userDept: res.users[ind].Department,
+          userYear: res.users[ind].AcademicYear,
+          })
+        }
+      } 
     });
   }
   render() {
@@ -74,21 +81,21 @@ class Settings extends Component {
          <Image style={styles.stretch}
             source={require("../../../images/simpson.png")}
              />
-          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}</Text>
-          <Text style={styles.text}>Major: {this.state.userDept}</Text>
+          <Text style={styles.text}>{"\n"}Name: {this.state.userFirst} {this.state.userLast}</Text>
+          <Text style={styles.text}>Dept: {this.state.userDept}</Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text2}
           />
           <Text style={styles.text}>Year: {this.state.userYear}</Text>
-          <Text style={styles.text}>email: {ema} </Text>
+          <Text style={styles.text}>Email: {ema} </Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(text) => this.setState({text})}
             value={this.state.text1}
           /> 
-          <Text style={styles.text}>phone: </Text>
+          <Text style={styles.text}>Phone: </Text>
           <TextInput
             style={{height: 40, borderColor: 'gray', borderWidth: 1}}
             onChangeText={(text) => this.setState({text})}

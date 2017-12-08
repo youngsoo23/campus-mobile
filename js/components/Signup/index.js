@@ -117,6 +117,8 @@ class Login extends Component {
             {/*<Image source={background} style={styles.shadow}>*/}
             <View style={styles.container1}>
               <Text style={styles.largeText}>Campus Connect</Text>
+              {/*<Image style={styles.stretch}
+                source={require("../../../images/backpack.jpg")} />*/}
             </View>
               <View style={styles.bg}>
                 <Field name="email" component={this.renderInput} />

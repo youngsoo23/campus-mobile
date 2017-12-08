@@ -11,7 +11,7 @@ export default {
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
+    fontSize: 16,
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: 'center'

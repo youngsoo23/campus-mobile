@@ -79,11 +79,11 @@ class Profile extends Component {
          <Image style={styles.stretch}
             source={require("../../../images/simpson.png")}
              />
-          <Text style={styles.text}>Name: {this.state.userFirst} {this.state.userLast}{"\n"}
-            Major: {this.state.userDept}{"\n"}
+          <Text style={styles.text}>{"\n"}Name: {this.state.userFirst} {this.state.userLast}{"\n"}
+            Dept: {this.state.userDept}{"\n"}
             Year: {this.state.userYear}{"\n"}
-            E-mail:{ema} {"\n"}
-            phone: {"\n"} </Text>
+            Email: {ema} {"\n"}
+            Phone: {"\n"} </Text>
           </View>
         </Content>
       </Container>
