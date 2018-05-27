@@ -12,7 +12,7 @@ Campus Connect is a social networking platform made specifically for CSUB studen
 * Group-specific pages
 * Embedded social media feeds
 
-\* Note: Many features are not implemented in the mobile application. Please visit https://github.com/kyleoverstreet/campus-web for the completed web application.
+\* Note: Many features are not implemented in the mobile application. Please visit [here](https://github.com/kyleoverstreet/campus-web) for the completed web application.
 
 ## Built With
 * [React Native](https://facebook.github.io/react-native/)
