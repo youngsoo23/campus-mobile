@@ -1,6 +1,8 @@
 # Campus Connect
 Campus Connect is a social networking platform made specifically for CSUB students. The main goal of Campus Connect is to connect students with other students and with organizations on campus.
 
+![Login Screen](images/login.png "Login Screen")
+
 ## Features*
 * Account creation/authentication
 * Home page news feed
